@@ -1,24 +1,36 @@
 package com.josephbkasanga.e_commerceapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.josephbkasanga.e_commerceapp.ui.auth.LoginActivity;
+import com.josephbkasanga.e_commerceapp.R;
+
+/**
+ * MainActivity
+ * ------------
+ * This is the launcher activity that appears when the app starts.
+ * It can navigate the user to the Login screen.
+ */
 public class MainActivity extends AppCompatActivity {
+
+    private Button btnGoToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        setContentView(R.layout.activity_main); // layout file for MainActivity
+
+        // Connect button from layout
+        btnGoToLogin = findViewById(R.id.btnGoToLogin);
+
+        // Set click listener to navigate to LoginActivity
+        btnGoToLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent); // open LoginActivity
         });
     }
 }
